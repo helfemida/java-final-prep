@@ -17,9 +17,3 @@
 
 ## Problem 4: MyPoint with Exception Handling
 Добавьте в ранее имплементированнй класс MyPoint проверку на вводимый тип х и у в конструкторе и в сеттерах и выведите ошибку InputMismatchException с сообщением о неправильном типе координат
-
-## Problem 5: Library System
-Симплементируйте данные классы и добавьте следующие обработчики исключений:
-- В Book: если значения title, author пустые или pages, price отрицательные выведите сообщение об ошибке ValueError
-- В Library: если при вызове метода displayBooks() обнаружится, что никаких книг не добавлено, выведите сообщение об ошибке EmptyLibraryError
-![img_4.png](umls/img_4.png)
