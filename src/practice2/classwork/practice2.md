@@ -26,7 +26,7 @@ Implement Generic Stack with the following methods:
 ### Remove Fibonacci Duplicates
 
 - Test Case 1: 
-_Input:_ [1, 1, 2, 3, 3, 3, 3, 4, 4, 5, 5, 5], 
+_Input:_ [1 1 2 3 3 3 3 4 4 5 5 5], 
 _Output:_ [3, 5]
 - Test Case 2:
 _Input:_ [2], 
