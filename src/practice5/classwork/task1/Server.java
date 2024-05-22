@@ -11,32 +11,35 @@ public class Server {
     private static final int PORT = 12345;
 
     public static void main(String[] args) {
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-            System.out.println("Server started. Listening on port " + PORT);
+        try {
+            ServerSocket serverSocket = new ServerSocket(PORT); //розетка
+            System.out.println("server started");
 
-            while (true) {
+            while(true){
                 try {
                     Socket clientSocket = serverSocket.accept();
+                    //отправлять пользователю информацию
                     PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+
+                    //принимать от пользователя
                     BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                    System.out.println("New connection from " + clientSocket);
+
+                    System.out.println("client qosyldy");
 
                     double radius = Double.parseDouble(in.readLine());
-                    double area = calculateArea(radius);
+                    double area = Math.pow(radius, 2) * Math.PI;
 
                     out.println(area);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(area);
+                }
+                catch (IOException e){
+                    System.out.println(e.getMessage());
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
         }
     }
 
-    private static double calculateArea(double radius) {
-        return Math.PI * radius * radius;
-    }
 }
-
-

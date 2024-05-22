@@ -1,12 +1,13 @@
-package practice5.classwork.task1;
+package practice5.classwork.task2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
-public class Client {
+public class Person {
     private static final String SERVER = "localhost";
     private static final int PORT = 12345;
 
@@ -20,28 +21,31 @@ public class Client {
             //то, что я получаю от сервера
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+            Scanner userInput = new Scanner(System.in);
 
-            System.out.println("connected to server");
+            System.out.println("Connected to server");
 
-            while(true) {
-                System.out.println("Enter the radius or exit to exit: ");
-
-                String input = userInput.readLine();
-
-                if (input.equalsIgnoreCase("exit")) {
-                    System.out.println("byee");
-                    System.exit(0);
+            Thread thread = new Thread(() -> {
+                try {
+                    String message;
+                    while ((message = in.readLine()) != null) {
+                        System.out.println("Server: " + message);
+                    }
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
                 }
+            });
 
-                out.println(input);
+            thread.start();
 
-                String serverResponse = in.readLine();
-                System.out.println("Area: " + serverResponse);
+            String userMessage;
+            while (true) {
+                userMessage = userInput.nextLine();
+                out.println(userMessage);
             }
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 }
+
